@@ -1,23 +1,32 @@
+from contextlib import asynccontextmanager
+
 import uvicorn
 
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, Request
 
-from src.rabbitMQ.server import consume_rabbitmq
+from src.admins.main import init_admin
 from . import api_routers
-from .config import settings
 
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    init_admin(app)
+    yield
 
 app = FastAPI(
     title="Backend",
     docs_url='/ui-swagger',
     openapi_url="/openapi.json",
+    lifespan=lifespan
 )
 
 app.include_router(
     api_routers,
     prefix='/api',
 )
+
+
 
 
 app.add_middleware(
