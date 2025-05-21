@@ -24,7 +24,7 @@ def upgrade() -> None:
         'guests',
         sa.Column('id', sa.UUID(), nullable=False),
         sa.Column('name', sa.String(), nullable=False),
-        sa.Column('isPresent', sa.Boolean(), nullable=False),
+        sa.Column('is_present', sa.Boolean(), nullable=False),
         sa.Column('table_id', sa.UUID(), nullable=False),
         sa.ForeignKeyConstraint(['table_id'], ['tables.id'], onupdate='CASCADE', ondelete='CASCADE'),
         sa.PrimaryKeyConstraint('id')

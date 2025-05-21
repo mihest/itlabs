@@ -13,7 +13,7 @@ class GuestModel(Base):
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
 
     name: Mapped[str] = mapped_column(String, nullable=False)
-    isPresent: Mapped[bool] = mapped_column(Boolean, nullable=False)
+    is_present: Mapped[bool] = mapped_column(Boolean, nullable=False)
     table_id: Mapped[uuid.UUID] = mapped_column(
         UUID(as_uuid=True),
         ForeignKey("tables.id", ondelete="CASCADE", onupdate="CASCADE"),
