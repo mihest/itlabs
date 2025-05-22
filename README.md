@@ -33,6 +33,10 @@
     pytest
 ```
 
+### Ссылки проекта
+* Admin panel - http://localhost:8081/admin
+* Swagger - http://localhost:8081/ui-swagger
+
 ### Используемый стек технологий
 * Python 3.12 - язык программирования на котором разрабатывался проект
 * PostgreSQL - используемая БД в проекте
