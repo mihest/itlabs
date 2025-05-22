@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, Query
 from pydantic import PositiveInt
 
 from src.database import SessionDep
-from src.tables.schemas import TableFilter, TableResponse, UpdateTable
+from src.tables.schemas import TableFilter, TableResponse, UpdateTable, TableGuestResponse, TableStatsResponse
 from src.tables.service import TableService
 
 router = APIRouter()
@@ -58,7 +58,7 @@ async def update_table(
 async def get_guests(
         table_id: uuid.UUID,
         session: SessionDep
-):
+) -> list[TableGuestResponse]:
     return await TableService.get_guests_by_id(session, table_id)
 
 
@@ -67,7 +67,7 @@ async def get_stats(
         session: SessionDep,
         num: Optional[PositiveInt] = Query(None),
         num_list: Optional[list[PositiveInt]] = Query(None)
-):
+) -> list[TableStatsResponse]:
     nums = set()
 
     if num:

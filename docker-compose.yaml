@@ -1,0 +1,36 @@
+services:
+    postgres:
+        image: postgres:15-alpine
+        volumes:
+            - postgres_data:/var/lib/postgresql/data/
+        ports:
+            - "5433:5432"
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: itlabs
+        networks:
+            - work
+
+    app:
+        build:
+            context: .
+        ports:
+            - "8081:8081"
+        depends_on:
+            - postgres
+        environment:
+            - POSTGRES_HOST=postgres
+            - POSTGRES_PORT=5432
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=itlabs
+        networks:
+            - work
+
+
+networks:
+    work:
+
+volumes:
+    postgres_data:
