@@ -1,6 +1,6 @@
 import uuid
 
-from sqlalchemy import UUID, Integer, String, Boolean, INTEGER, CheckConstraint, func, select
+from sqlalchemy import UUID, Integer, String, INTEGER, CheckConstraint, func, select
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 

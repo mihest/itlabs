@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 import uvicorn
 
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 
 from src.admins.main import init_admin
 from . import api_routers
@@ -39,4 +39,4 @@ app.add_middleware(
 
 
 if __name__ == '__main__':
-    uvicorn.run("src.main:app", host='0.0.0.0', port=8081, log_level='info', reload=True)
+    uvicorn.run("src.main:app", host='0.0.0.0', port=8081, log_level='error', reload=False)

@@ -1,4 +1,8 @@
+from fastapi import HTTPException
+
 from sqladmin import ModelView
+from sqlalchemy.exc import IntegrityError
+from starlette.requests import Request
 
 from src.guests.models import GuestModel
 from src.tables.models import TableModel
@@ -70,3 +74,11 @@ class TableAdmin(ModelView, model=TableModel):
         TableModel.guests_count: "Гостей",
         TableModel.guests_present_count: "Присутствует гостей",
     }
+
+    async def insert_model(self, request: Request, data: dict) -> None:
+        try:
+            return await super().insert_model(request, data)
+        except Exception as e:
+            if isinstance(e, IntegrityError):
+                raise HTTPException(status_code=400, detail="Номер уже существует")
+            raise e

@@ -2,7 +2,7 @@ from typing import Optional, Union, Any
 
 from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import selectinload, with_expression
+from sqlalchemy.orm import selectinload
 
 from src.dao import BaseDAO
 from src.tables.models import TableModel
