@@ -4,7 +4,6 @@ from sqlalchemy import UUID, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from src.models import Base
-from src.tables.models import TableModel
 
 
 class GuestModel(Base):
@@ -20,7 +19,10 @@ class GuestModel(Base):
         nullable=False
     )
 
-    table: Mapped[TableModel] = relationship(
+    table: Mapped["TableModel"] = relationship(
         "TableModel",
         back_populates="guests"
     )
+
+    def __str__(self) -> str:
+        return f"Гость {self.name}"

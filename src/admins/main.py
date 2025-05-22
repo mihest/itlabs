@@ -23,7 +23,7 @@ class MyAuthenticationBackend(AuthenticationBackend):
         async with db.session() as session:
             stmt = select(AdminModel).where(AdminModel.username == username)
             result = await session.execute(stmt)
-            user = result.scalar_one_or_none()
+            user = result.scalars().one_or_none()
 
         if not user or not is_valid_password(password, user.hashed_password):
             return False
