@@ -11,20 +11,24 @@
 2. App (миграции alembic + backend fastapi)
 
 ### Запуск проекта через cmd
-Для запуска переименуйте .env.example в .env и переменные для подключения к БД PostgreSQL<br>
+Для запуска переименуйте .env.example в .env и настроить переменные для подключения к БД PostgreSQL<br>
 В корне проекта прописать
 ```shell
     pip install uv
+    uv venv
+    .venv\Scripts\activate
     uv sync --no-dev
     alembic upgrade head
     python -m src.main
 ```
 
 ### Запуск тестов
-Для запуска переименуйте .env.example в .env и переменные для подключения к тестовой БД PostgreSQL<br>
+Для запуска переименуйте .env.example в .env и настроить переменные для подключения к тестовой БД PostgreSQL<br>
 В корне проекта прописать
 ```shell
     pip install uv
+    uv venv
+    .venv\Scripts\activate
     uv sync
     pytest
 ```
