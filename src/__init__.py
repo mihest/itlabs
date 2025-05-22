@@ -9,8 +9,8 @@ api_routers = APIRouter()
 
 api_routers.include_router(
     guests_router,
-    tags=["Guests"],
-    prefix="/guests",
+    tags=["GuestLists"],
+    prefix="/guest_lists",
 )
 
 api_routers.include_router(

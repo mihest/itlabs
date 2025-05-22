@@ -89,9 +89,13 @@ class TableService:
 
     @classmethod
     async def update(cls, session: AsyncSession, table_id: uuid.UUID, data: UpdateTable):
+        if not data.model_dump(exclude_unset=True):
+            raise HTTPException(status_code=400, detail="Body cannot be empty")
+
         table = await TableDAO.find_one_or_none(session, TableModel.id == table_id)
         if not table:
             raise HTTPException(status_code=404, detail="Table not found")
+
         try:
             updated_table = await TableDAO.update(session, TableModel.id == table_id, obj_in=data)
         except IntegrityError:
